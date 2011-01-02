@@ -1,0 +1,83 @@
+<html>
+
+<head>
+
+<style>
+	body {
+		margin: 0;
+	}
+
+	a {
+		background: transparent url('Default.png') no-repeat scroll top right;
+		font: 50px "Lucida Grande";
+		font-weight: bold;
+		color: white;
+		text-align: center;
+		display: block;
+		float: left;
+		text-decoration: none;
+		width: 210px;
+		height: 115px;
+	}
+
+	span {
+		display: block;
+		padding: 25px 0 0px 0px;
+	}
+</style>
+
+<script type="text/javascript">
+	function getNextPeriod( lastPeriod ) {
+		var daysPerCycle = 28;
+		var hoursPerCycle = daysPerCycle * 24;
+		var minutesPerCycle = hoursPerCycle * 60;
+		var secondsPerCycle = minutesPerCycle * 60;
+		var millisPerCycle = secondsPerCycle * 1000;
+		return lastPeriod + millisPerCycle;
+	}
+
+	function getDaysTill( time ) {
+		var now = new Date().getTime();
+		var nanosTill = time - now;
+		var secondsTill = nanosTill / 1000;
+		var minutesTill = secondsTill / 60;
+		var hoursTill = minutesTill / 60;
+		var daysTill = hoursTill / 24;
+		return daysTill;
+	}
+
+	function fixMeUpScotty() {
+		localStorage["lastPeriod"] = new Date().getTime();
+		engageMrSulu();
+	}
+
+	function wheresMyShipScotty() {
+		var tomorrow = new Date();
+		tomorrow.setDate(tomorrow.getDate() + 1);
+		tomorrow.setHours(0);
+		tomorrow.setMinutes(0);
+		tomorrow.setSeconds(0);
+		tomorrow.setMilliseconds(0);
+		setTimeout("engageMrSulu();", tomorrow.getTime() - new Date().getTime());
+	}
+
+	function engageMrSulu() {
+		var lastPeriod = localStorage["lastPeriod"];
+		document.getElementById("days").innerText = lastPeriod == null ? "." : parseInt(getDaysTill(getNextPeriod(parseInt(lastPeriod))));
+	}
+</script>
+
+</head>
+
+<body>
+		<a href="#" onclick="fixMeUpScotty();">
+		<span id="days">Loading...</span>
+		</a>
+
+		<script type="text/javascript">
+			engageMrSulu();
+			wheresMyShipScotty();
+		</script>
+</body>
+
+</html>
