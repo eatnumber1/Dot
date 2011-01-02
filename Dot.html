@@ -63,7 +63,7 @@
 
 	function engageMrSulu() {
 		var lastPeriod = localStorage["lastPeriod"];
-		document.getElementById("days").innerText = lastPeriod == null ? "." : parseInt(getDaysTill(getNextPeriod(parseInt(lastPeriod))));
+		document.getElementById("days").innerText = lastPeriod == null ? "." : Math.round(getDaysTill(getNextPeriod(parseInt(lastPeriod))));
 	}
 </script>
 
