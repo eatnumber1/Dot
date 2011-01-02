@@ -37,7 +37,7 @@
 	}
 
 	function getDaysTill( time ) {
-		var now = new Date().getTime();
+		var now = zeroDate(new Date()).getTime();
 		var nanosTill = time - now;
 		var secondsTill = nanosTill / 1000;
 		var minutesTill = secondsTill / 60;
@@ -46,24 +46,28 @@
 		return daysTill;
 	}
 
+	function zeroDate( d ) {
+		d.setHours(0);
+		d.setMinutes(0);
+		d.setSeconds(0);
+		d.setMilliseconds(0);
+		return d;
+	}
+
 	function fixMeUpScotty() {
-		localStorage["lastPeriod"] = new Date().getTime();
+		localStorage["lastPeriod"] = zeroDate(new Date()).getTime();
 		engageMrSulu();
 	}
 
 	function wheresMyShipScotty() {
 		var tomorrow = new Date();
 		tomorrow.setDate(tomorrow.getDate() + 1);
-		tomorrow.setHours(0);
-		tomorrow.setMinutes(0);
-		tomorrow.setSeconds(0);
-		tomorrow.setMilliseconds(0);
-		setTimeout("engageMrSulu();", tomorrow.getTime() - new Date().getTime());
+		setTimeout("engageMrSulu();", zeroDate(tomorrow).getTime() - zeroDate(new Date()).getTime());
 	}
 
 	function engageMrSulu() {
 		var lastPeriod = localStorage["lastPeriod"];
-		document.getElementById("days").innerText = lastPeriod == null ? "." : Math.round(getDaysTill(getNextPeriod(parseInt(lastPeriod))));
+		document.getElementById("days").innerText = lastPeriod == null ? "." : getDaysTill(getNextPeriod(parseInt(lastPeriod)));
 	}
 </script>
 
