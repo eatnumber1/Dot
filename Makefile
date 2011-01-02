@@ -3,16 +3,17 @@ CP ?= cp
 MKDIR ?= mkdir
 
 RESOURCES := Default.png Dot.html Icon.png Info.plist
+WIDGET := Dot.wdgt
 
 .PHONY: all clean
 
-all: Dot.wdgt
+all: $(WIDGET)
 
 clean:
-	$(RM) -r Dot.wdgt
+	$(RM) -r $(WIDGET)
 
-Dot.wdgt: WDGT_RESOURCES := $(RESOURCES)
+$(WIDGET): $(RESOURCES)
 
-%.wdgt: $(WDGT_RESOURCES)
+%.wdgt:
 	$(MKDIR) $@
-	$(CP) -r $(RESOURCES) $@
+	$(CP) -r $^ $@ || $(RM) -r $@
