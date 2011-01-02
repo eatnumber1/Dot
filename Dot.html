@@ -1,87 +1,81 @@
 <html>
+	<head>
+		<style>
+			body {
+				margin: 0;
+			}
 
-<head>
+			a {
+				background: transparent url('Default.png') no-repeat scroll top right;
+				font: 50px "Lucida Grande";
+				font-weight: bold;
+				color: white;
+				text-align: center;
+				display: block;
+				float: left;
+				text-decoration: none;
+				width: 210px;
+				height: 115px;
+			}
 
-<style>
-	body {
-		margin: 0;
-	}
+			span {
+				display: block;
+				padding: 25px 0 0px 0px;
+			}
+		</style>
+		<script type="text/javascript">
+			function whatsThePulsarsPeriod( lastPeriod ) {
+				var daysPerCycle = 28;
+				var hoursPerCycle = daysPerCycle * 24;
+				var minutesPerCycle = hoursPerCycle * 60;
+				var secondsPerCycle = minutesPerCycle * 60;
+				var millisPerCycle = secondsPerCycle * 1000;
+				return lastPeriod + millisPerCycle;
+			}
 
-	a {
-		background: transparent url('Default.png') no-repeat scroll top right;
-		font: 50px "Lucida Grande";
-		font-weight: bold;
-		color: white;
-		text-align: center;
-		display: block;
-		float: left;
-		text-decoration: none;
-		width: 210px;
-		height: 115px;
-	}
+			function whatsOurEtaMrSulu( time ) {
+				var now = flattenTheTransducer(new Date()).getTime();
+				var nanosTill = time - now;
+				var secondsTill = nanosTill / 1000;
+				var minutesTill = secondsTill / 60;
+				var hoursTill = minutesTill / 60;
+				var daysTill = hoursTill / 24;
+				return daysTill;
+			}
 
-	span {
-		display: block;
-		padding: 25px 0 0px 0px;
-	}
-</style>
+			function flattenTheTransducer( d ) {
+				d.setHours(0);
+				d.setMinutes(0);
+				d.setSeconds(0);
+				d.setMilliseconds(0);
+				return d;
+			}
 
-<script type="text/javascript">
-	function getNextPeriod( lastPeriod ) {
-		var daysPerCycle = 28;
-		var hoursPerCycle = daysPerCycle * 24;
-		var minutesPerCycle = hoursPerCycle * 60;
-		var secondsPerCycle = minutesPerCycle * 60;
-		var millisPerCycle = secondsPerCycle * 1000;
-		return lastPeriod + millisPerCycle;
-	}
+			function fixMeUpScotty() {
+				localStorage["lastPeriod"] = flattenTheTransducer(new Date()).getTime();
+				engageMrSulu();
+			}
 
-	function getDaysTill( time ) {
-		var now = zeroDate(new Date()).getTime();
-		var nanosTill = time - now;
-		var secondsTill = nanosTill / 1000;
-		var minutesTill = secondsTill / 60;
-		var hoursTill = minutesTill / 60;
-		var daysTill = hoursTill / 24;
-		return daysTill;
-	}
+			function wheresMyShipScotty() {
+				var tomorrow = new Date();
+				tomorrow.setDate(tomorrow.getDate() + 1);
+				setTimeout("engageMrSulu();", flattenTheTransducer(tomorrow).getTime() - flattenTheTransducer(new Date()).getTime());
+			}
 
-	function zeroDate( d ) {
-		d.setHours(0);
-		d.setMinutes(0);
-		d.setSeconds(0);
-		d.setMilliseconds(0);
-		return d;
-	}
-
-	function fixMeUpScotty() {
-		localStorage["lastPeriod"] = zeroDate(new Date()).getTime();
-		engageMrSulu();
-	}
-
-	function wheresMyShipScotty() {
-		var tomorrow = new Date();
-		tomorrow.setDate(tomorrow.getDate() + 1);
-		setTimeout("engageMrSulu();", zeroDate(tomorrow).getTime() - zeroDate(new Date()).getTime());
-	}
-
-	function engageMrSulu() {
-		var lastPeriod = localStorage["lastPeriod"];
-		document.getElementById("days").innerText = lastPeriod == null ? "." : getDaysTill(getNextPeriod(parseInt(lastPeriod)));
-	}
-</script>
-
-</head>
-
-<body>
+			function engageMrSulu() {
+				var lastPeriod = localStorage["lastPeriod"];
+				document.getElementById("days").innerText = lastPeriod == null ? "." : whatsOurEtaMrSulu(whatsThePulsarsPeriod(parseInt(lastPeriod)));
+			}
+			</script>
+	</head>
+	<body>
 		<a href="#" onclick="fixMeUpScotty();">
-		<span id="days">Loading...</span>
+			<span id="days">Loading</span>
 		</a>
 
 		<script type="text/javascript">
 			engageMrSulu();
 			wheresMyShipScotty();
 		</script>
-</body>
-
+	</body>
 </html>
