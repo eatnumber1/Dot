@@ -28,8 +28,7 @@ function wheresMyShipScotty( d ) {
 function engageMrSulu() {
 	var lastPeriod = localStorage["lastPeriod"];
 	// Captain, this is illogical. - Spock
-	var foo = whatsOurEtaMrSulu(whatsThePulsarsPeriod(parseInt(lastPeriod)));
-	$("#days").html(lastPeriod == null ? "?" : whatsOurEtaMrSulu(whatsThePulsarsPeriod(parseInt(lastPeriod))));
+	$("#days").html(lastPeriod == null ? "?" : parseInt(whatsOurEtaMrSulu(whatsThePulsarsPeriod(parseInt(lastPeriod)))));
 }
 
 $("document").ready(function() {
