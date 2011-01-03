@@ -1,0 +1,21 @@
+body {
+	margin: 0;
+}
+
+#dot {
+	background: transparent url('Default.png') no-repeat scroll top right;
+	font: 50px "Lucida Grande";
+	font-weight: bold;
+	color: white;
+	text-align: center;
+	display: block;
+	float: left;
+	text-decoration: none;
+	width: 210px;
+	height: 115px;
+}
+
+#days {
+	display: block;
+	padding: 25px 0 0px 0px;
+}

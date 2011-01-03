@@ -1,0 +1,6 @@
+[submodule "jquery"]
+	path = jquery
+	url = git://github.com/jquery/jquery.git
+[submodule "Flip-jQuery"]
+	path = Flip-jQuery
+	url = git://github.com/roncioso/Flip-jQuery.git
