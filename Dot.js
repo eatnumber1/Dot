@@ -49,7 +49,7 @@ function wheresMyShipScotty( d ) {
 function engageMrSulu() {
 	var lastPeriod = load("lastPeriod");
 	// Captain, this is illogical. - Spock
-	$("#days").html(lastPeriod == null ? "?" : parseInt(whatsOurEtaMrSulu(whatsThePulsarsPeriod(parseInt(lastPeriod)))));
+	$("#daysText").html(lastPeriod == null ? "?" : parseInt(whatsOurEtaMrSulu(whatsThePulsarsPeriod(parseInt(lastPeriod)))));
 }
 
 $("document").ready(function() {
@@ -59,8 +59,14 @@ $("document").ready(function() {
 	tomorrow.setDate(tomorrow.getDate() + 1);
 	setInterval(engageMrSulu, wheresMyShipScotty(tomorrow).getTime() - wheresMyShipScotty(new Date()).getTime());
 
-	$("#dot").click(function() {
+	$("#daysButton").click(function() {
 		save("lastPeriod", wheresMyShipScotty(new Date()).getTime());
 		engageMrSulu();	
+	});
+	
+	$("#front").mouseover(function() {
+		$("#infoButton").stop(true).fadeTo("slow", 1);
+	}).mouseout(function() {
+		$("#infoButton").stop(true).fadeTo("slow", 0);
 	});
 });

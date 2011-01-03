@@ -2,20 +2,48 @@ body {
 	margin: 0;
 }
 
-#dot {
-	background: transparent url('Default.png') no-repeat scroll top right;
+.days {
 	font: 50px "Lucida Grande";
 	font-weight: bold;
-	color: white;
 	text-align: center;
-	display: block;
-	float: left;
 	text-decoration: none;
-	width: 210px;
-	height: 115px;
+	color: white;
+	display: block;
 }
 
-#days {
-	display: block;
+#daysButton {
+	width: 100%;
+	height: 100%;
+}
+
+#daysText {
 	padding: 25px 0 0px 0px;
+}
+
+#front {
+	width: 210px;
+	height: 115px;
+	background: transparent url('Default.png') no-repeat scroll top right;
+	position: absolute;
+}
+
+#infoButton {
+	opacity:0;
+	background: url(file:///System/Library/WidgetResources/ibutton/white_i.png) no-repeat top left;
+	z-index:8000;
+}
+
+#infoButtonGlow {
+	display:hidden;
+	opacity:0.25;
+	background: url(file:///System/Library/WidgetResources/ibutton/white_rollie.png) no-repeat top left;
+	z-index:7999;
+}
+
+.infoButton {
+	position:absolute;
+	bottom: 12px;
+	right: 30px;
+	width:13px;
+	height:13px;
 }
