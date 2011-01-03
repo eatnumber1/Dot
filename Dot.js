@@ -52,6 +52,24 @@ function engageMrSulu() {
 	$("#daysText").html(lastPeriod == null ? "?" : parseInt(whatsOurEtaMrSulu(whatsThePulsarsPeriod(parseInt(lastPeriod)))));
 }
 
+function flipToBack() {
+	var doflip = function() {
+		var front = $("#front"), back = $("#back");
+		front.toggle();
+		back.toggle();
+	}
+	if( window.widget ) {
+		widget.prepareForTransition("ToBack");
+		doflip();
+		setTimeout("widget.performTransition();", 0);
+	} else {
+		$("#flipbox").flip({
+			direction: "rl",
+			onAnimation: doflip
+		});
+	}
+}
+
 $("document").ready(function() {
 	engageMrSulu();
 
@@ -69,4 +87,6 @@ $("document").ready(function() {
 	}).mouseout(function() {
 		$("#infoButton").stop(true).fadeTo("slow", 0);
 	});
+	
+	$("#infoButton").click(flipToBack);
 });

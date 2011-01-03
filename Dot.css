@@ -20,27 +20,31 @@ body {
 	padding: 25px 0 0px 0px;
 }
 
-#front {
-	width: 210px;
-	height: 115px;
-	background: transparent url('Default.png') no-repeat scroll top right;
+#flipbox {
 	position: absolute;
+	width: 220px;
+	height: 115px;
+}
+
+.backdrop {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+}
+
+#front {
+	background: transparent url('Default.png') no-repeat scroll top right;
+}
+
+#back {
+	background: transparent url('Default_reverse.png') no-repeat scroll top right;
+	display: none;
 }
 
 #infoButton {
 	opacity:0;
 	background: url(file:///System/Library/WidgetResources/ibutton/white_i.png) no-repeat top left;
 	z-index:8000;
-}
-
-#infoButtonGlow {
-	display:hidden;
-	opacity:0.25;
-	background: url(file:///System/Library/WidgetResources/ibutton/white_rollie.png) no-repeat top left;
-	z-index:7999;
-}
-
-.infoButton {
 	position:absolute;
 	bottom: 12px;
 	right: 30px;

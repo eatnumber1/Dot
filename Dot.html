@@ -8,20 +8,22 @@
 		<script type='text/javascript' src='/System/Library/WidgetResources/AppleClasses/AppleButton.js' charset='utf-8'></script>
 		<script type="text/javascript" src="modernizr.js" charset="utf-8"></script>
 		<script type="text/javascript" src="jquery.js" charset="utf-8"></script>
+		<script type="text/javascript" src="jquery-ui.js" charset="utf-8"></script>
 		<script type="text/javascript" src="jquery.cookie.js" charset="utf-8"></script>
 		<script type="text/javascript" src="jquery.flip.js" charset="utf-8"></script>
 		<script type="text/javascript" src="Dot.js" charset="utf-8"></script>
 	</head>
 	<body>
-		<div id="front">
-			<a class="days" id="daysButton" href="">
-				<span class="days" id="daysText">?</span>
-			</a>
-			<div class="infoButton" id="infoButtonRollie"></div>
-			<div class="infoButton" id="infoButton"></div>
-		</div>
-		<div id="back">
-			<div id="doneButton"></div>
+		<div id="flipbox">
+			<div class="backdrop" id="front">
+				<a class="days" id="daysButton" href="">
+					<span class="days" id="daysText">?</span>
+				</a>
+				<div id="infoButton"></div>
+			</div>
+			<div class="backdrop" id="back">
+				<div id="doneButton"></div>
+			</div>
 		</div>
 	</body>
 </html>
