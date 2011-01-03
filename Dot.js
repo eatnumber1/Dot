@@ -1,3 +1,24 @@
+function save( key, value ) {
+	var ret;
+	if( window.widget ) {
+		widget.setPreferenceForKey(value, key);
+	} else if( Modernizr.localstorage ) {
+		localStorage[key] = value;
+	} else {
+		$.cookie(key, value, { expires: 365 });
+	}
+}
+
+function load( key ) {
+	if( window.widget ) {
+		return widget.preferenceForKey(key);
+	} else if( Modernizr.localstorage ) {
+		return localStorage[key];
+	} else {
+		return $.cookie(key);
+	}
+}
+
 function whatsThePulsarsPeriod( lastPeriod ) {
 	var daysPerCycle = 29.5;
 	var hoursPerCycle = daysPerCycle * 24;
@@ -26,7 +47,7 @@ function wheresMyShipScotty( d ) {
 }
 
 function engageMrSulu() {
-	var lastPeriod = localStorage["lastPeriod"];
+	var lastPeriod = load("lastPeriod");
 	// Captain, this is illogical. - Spock
 	$("#days").html(lastPeriod == null ? "?" : parseInt(whatsOurEtaMrSulu(whatsThePulsarsPeriod(parseInt(lastPeriod)))));
 }
@@ -39,7 +60,7 @@ $("document").ready(function() {
 	setInterval(engageMrSulu, wheresMyShipScotty(tomorrow).getTime() - wheresMyShipScotty(new Date()).getTime());
 
 	$("#dot").click(function() {
-		localStorage["lastPeriod"] = wheresMyShipScotty(new Date()).getTime();
+		save("lastPeriod", wheresMyShipScotty(new Date()).getTime());
 		engageMrSulu();	
 	});
 });

@@ -4,3 +4,9 @@
 [submodule "Flip-jQuery"]
 	path = Flip-jQuery
 	url = git://github.com/roncioso/Flip-jQuery.git
+[submodule "Modernizr"]
+	path = Modernizr
+	url = git://github.com/Modernizr/Modernizr.git
+[submodule "jquery-cookie"]
+	path = jquery-cookie
+	url = git://github.com/carhartl/jquery-cookie.git

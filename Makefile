@@ -1,22 +1,19 @@
 INSTALL ?= install
 MKDIR ?= mkdir
-LN ?= ln
+LN ?= ln -f
 
-JQUERY_RESOURCES := jquery.js jquery.flip.js
-RESOURCES := Dot.html Dot.css Dot.js Default.png Icon.png Info.plist $(JQUERY_RESOURCES)
-WIDGET := Dot.wdgt
+GENERATED_RESOURCES := jquery.js jquery.flip.js modernizr.js jquery.cookie.js
+RESOURCES := Dot.html Dot.css Dot.js Default.png Icon.png Info.plist $(GENERATED_RESOURCES)
 
 .PHONY: all clean depclean
 
-all: $(WIDGET)
+all: Dot.wdgt
 
 depclean: clean
 	$(MAKE) -C jquery clean
 
 clean:
-	$(RM) -r $(WIDGET) $(JQUERY_RESOURCES)
-
-$(WIDGET): $(RESOURCES)
+	$(RM) -r Dot.wdgt $(GENERATED_RESOURCES)
 
 jquery/dist/jquery.js:
 	$(MAKE) -C jquery V=1 init jquery
@@ -27,6 +24,13 @@ jquery.js: jquery/dist/jquery.js
 jquery.flip.js:
 	$(LN) Flip-Jquery/$@ $@
 
-%.wdgt:
+modernizr.js:
+	$(LN) Modernizr/$@ $@
+
+jquery.cookie.js:
+	$(LN) jquery-cookie/$@ $@
+
+Dot.wdgt: $(RESOURCES)
+	$(RM) -r $@
 	$(MKDIR) $@
 	$(LN) $^ $@ || $(RM) -r $@

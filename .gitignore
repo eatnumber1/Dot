@@ -2,3 +2,5 @@ Dot.wdgt
 .*.swp
 jquery.flip.js
 jquery.js
+jquery.cookie.js
+modernizr.js

@@ -3,13 +3,24 @@
 		<style>
 			@import "Dot.css";
 		</style>
+		<script type='text/javascript' src='/System/Library/WidgetResources/AppleClasses/AppleInfoButton.js' charset='utf-8'></script>
+		<script type='text/javascript' src='/System/Library/WidgetResources/AppleClasses/AppleAnimator.js' charset='utf-8'></script>
+		<script type='text/javascript' src='/System/Library/WidgetResources/AppleClasses/AppleButton.js' charset='utf-8'></script>
+		<script type="text/javascript" src="modernizr.js" charset="utf-8"></script>
 		<script type="text/javascript" src="jquery.js" charset="utf-8"></script>
+		<script type="text/javascript" src="jquery.cookie.js" charset="utf-8"></script>
 		<script type="text/javascript" src="jquery.flip.js" charset="utf-8"></script>
 		<script type="text/javascript" src="Dot.js" charset="utf-8"></script>
 	</head>
 	<body>
-		<a id="dot" href="#">
-			<span id="days">?</span>
-		</a>
+		<div id="front">
+			<a id="dot" href="#">
+				<span id="days">?</span>
+			</a>
+			<div id="infoButton"></div>
+		</div>
+		<div id="back">
+			<div id="doneButton"></div>
+		</div>
 	</body>
 </html>
